@@ -4,7 +4,23 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
+/*
+ * Komponen App adalah komponen utama pada aplikasi frontend React.
+ *
+ * Fungsi ini bertanggung jawab untuk menampilkan tampilan halaman awal aplikasi.
+ * Di dalam komponen, kita menggunakan JSX untuk membangun struktur UI seperti
+ * heading, paragraf, tombol, dan beberapa link referensi.
+ *
+ * useState() digunakan untuk membuat state lokal. State count menyimpan nilai angka,
+ * lalu setCount() dipanggil saat tombol diklik untuk menambah nilainya.
+ * Dengan cara ini, UI bisa berubah secara dinamis tanpa reload halaman.
+ */
 function App() {
+  /*
+   * count adalah state yang menyimpan angka saat ini.
+   * setCount adalah function untuk memperbarui nilai count.
+   * Nilai awalnya adalah 0.
+   */
   const [count, setCount] = useState(0)
 
   return (
@@ -24,6 +40,11 @@ function App() {
         <button
           type="button"
           className="counter"
+          /*
+           * onClick dipanggil setiap kali tombol ditekan.
+           * Fungsi ini menjalankan setCount((count) => count + 1)
+           * yang artinya nilai count akan bertambah 1 dari nilai sebelumnya.
+           */
           onClick={() => setCount((count) => count + 1)}
         >
           Count is {count}
