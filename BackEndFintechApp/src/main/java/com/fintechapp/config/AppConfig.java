@@ -7,14 +7,22 @@ import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
-/* Menandai class ini sebagai sumber konfigurasi bean di Spring */
+/**
+ * Kelas konfigurasi aplikasi untuk mendefinisikan bean pendukung (Template
+ * Engine, ModelMapper).
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Configuration
 public class AppConfig {
 
-    /*
-     * Bean 1: Thymeleaf Template Engine
-     * Mengkonfigurasi Thymeleaf agar bisa merender file HTML
-     * sebagai view/template di aplikasi (misal halaman login, dll)
+    /**
+     * Konfigurasi Thymeleaf Template Engine untuk memproses template HTML.
+     * Mengatur lokasi template di folder classpath "templates/" dengan ekstensi
+     * ".html" dan encoding UTF-8.
+     *
+     * @return instance {@link SpringTemplateEngine} yang telah dikonfigurasi
      */
     @Bean
     public SpringTemplateEngine templateEngine() {
@@ -35,10 +43,13 @@ public class AppConfig {
         return templateEngine;
     }
 
-    /*
-     * Bean 2: ModelMapper
-     * Library untuk mapping/conversion antar object secara otomatis
-     * Misal: Entity -> DTO atau DTO -> Entity tanpa kode manual
+    /**
+     * Konfigurasi ModelMapper untuk memetakan objek antar layer (misalnya Entity ke
+     * DTO).
+     * Mengaktifkan pencocokan field dengan level akses private dan strategi
+     * standar.
+     *
+     * @return instance {@link ModelMapper} yang telah dikonfigurasi
      */
     @Bean
     public ModelMapper modelMapperConfig() {

@@ -3,6 +3,7 @@ package com.fintechapp.notification.entity;
 import java.time.LocalDateTime;
 
 import com.fintechapp.auth_users.entity.User;
+import com.fintechapp.enums.NotificationType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,6 +19,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entitas JPA untuk mencatat riwayat pesan notifikasi yang dikirimkan ke pengguna.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Entity
 @Table(name = "notifications")
 @Data
@@ -35,7 +42,7 @@ public class Notification {
     private String body;
 
     @Enumerated(EnumType.STRING)
-    private Notification type;
+    private NotificationType type;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

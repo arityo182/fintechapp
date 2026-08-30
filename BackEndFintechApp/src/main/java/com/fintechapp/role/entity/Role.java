@@ -6,6 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entitas JPA yang merepresentasikan role/otoritas hak akses pengguna (misal CUSTOMER, ADMIN, AUDITOR).
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Entity
 @Data
 @Table(name = "roles")
@@ -19,5 +25,5 @@ public class Role {
 
     @Column(unique = true)
     @NotBlank(message = "Role Name is required")
-    private String name; // ROLE NAME e.g CUSTOMER, AUDITOR, ADMIN
+    private String name; // Nama role, misal: CUSTOMER, AUDITOR, ADMIN
 }

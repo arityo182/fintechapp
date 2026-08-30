@@ -12,6 +12,12 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * Entitas JPA untuk mencatat detail riwayat transaksi perbankan (Deposit, Penarikan, Transfer).
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Entity
 @Data
 @Builder
@@ -43,7 +49,7 @@ public class Transaction {
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 
-    // for transfer
+    // Untuk jenis transaksi transfer
     private String sourceAccount;
     private String destinationAccount;
 }

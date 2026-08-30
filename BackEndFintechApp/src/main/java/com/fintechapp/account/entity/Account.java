@@ -16,6 +16,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Entitas JPA yang merepresentasikan rekening/akun finansial pengguna.
+ * Mencatat nomor rekening, saldo, jenis akun, mata uang, dan riwayat transaksi.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Entity
 @Data
 @Builder

@@ -6,9 +6,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Entitas JPA untuk menyimpan kode verifikasi reset password sementara milik pengguna.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Entity
 @Data
 @Builder

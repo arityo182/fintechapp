@@ -13,6 +13,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data Transfer Object (DTO) untuk membawa payload data pengiriman notifikasi/email.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -31,7 +37,7 @@ public class NotificationDTO {
     private NotificationType type;
     private LocalDateTime createdAt;
 
-    // For values/variables to be passed into email tamplate to send
+    // Data template email dan variabel pendukung
     private String templateName;
     private Map<String, Object> templateVariables;
 }

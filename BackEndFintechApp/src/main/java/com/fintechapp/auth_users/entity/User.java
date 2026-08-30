@@ -13,6 +13,13 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Entitas JPA yang merepresentasikan data akun pengguna di sistem.
+ * Menyimpan data pribadi, kredensial, role akses, dan rekening yang terhubung.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Entity
 @Data
 @Builder

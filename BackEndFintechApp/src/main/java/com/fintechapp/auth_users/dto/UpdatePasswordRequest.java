@@ -3,6 +3,12 @@ package com.fintechapp.auth_users.dto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
+/**
+ * Data Transfer Object (DTO) untuk perubahan password pengguna yang sedang login.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Data
 public class UpdatePasswordRequest {
 

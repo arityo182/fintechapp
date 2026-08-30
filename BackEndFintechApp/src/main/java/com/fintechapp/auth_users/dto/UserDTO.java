@@ -14,6 +14,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * Data Transfer Object (DTO) untuk menampilkan representasi data profil pengguna.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Data
 @Builder
 @AllArgsConstructor
@@ -34,7 +40,7 @@ public class UserDTO {
     private boolean active;
     private List<Role> roles;
 
-    @JsonManagedReference // if helps avoid recursion loop by ignoring the userDTO withing the AccountDTO
+    @JsonManagedReference // Mencegah recursion loop dengan mengabaikan userDTO di dalam AccountDTO
     private List<AccountDTO> accounts;
 
     private LocalDateTime createdAt;

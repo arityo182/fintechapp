@@ -11,12 +11,25 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementasi layanan bisnis untuk pengelolaan data role sistem.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Service
 @RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
 
     private final RoleRepo roleRepo;
 
+    /**
+     * Membuat role baru jika nama role belum terdaftar.
+     *
+     * @param roleRequest data role yang akan dibuat
+     * @return respons berisi entitas role yang berhasil disimpan
+     * @throws BadRequestException jika nama role sudah ada sebelumnya
+     */
     @Override
     public Response<Role> createRole(Role roleRequest) {
 
@@ -33,6 +46,13 @@ public class RoleServiceImpl implements RoleService {
                 .build();
     }
 
+    /**
+     * Memperbarui role yang telah ada berdasarkan ID.
+     *
+     * @param roleRequest data role dengan ID yang ingin diubah
+     * @return respons berisi data role hasil pembaruan
+     * @throws NotFoundException jika ID role tidak ditemukan
+     */
     @Override
     public Response<Role> updateRole(Role roleRequest) {
         Role role = roleRepo.findById(roleRequest.getId())
@@ -49,6 +69,11 @@ public class RoleServiceImpl implements RoleService {
                 .build();
     }
 
+    /**
+     * Mengambil semua daftar role yang tersimpan di basis data.
+     *
+     * @return respons berisi daftar entitas role
+     */
     @Override
     public Response<List<Role>> getAllRoles() {
 
@@ -61,6 +86,13 @@ public class RoleServiceImpl implements RoleService {
                 .build();
     }
 
+    /**
+     * Menghapus role dari sistem berdasarkan ID.
+     *
+     * @param id ID role yang akan dihapus
+     * @return respons status penghapusan role
+     * @throws NotFoundException jika ID role tidak ditemukan
+     */
     @Override
     public Response<?> deleteRole(Long id) {
         if (!roleRepo.existsById(id)) {

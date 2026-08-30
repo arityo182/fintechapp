@@ -25,6 +25,12 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Implementasi layanan bisnis untuk pengelolaan rekening perbankan/finansial nasabah.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -36,6 +42,13 @@ public class AccountServiceImpl implements AccountService {
     private final ModelMapper modelMapper;
     private final Random random = new Random();
 
+    /**
+     * Membuat rekening baru untuk pengguna dengan nomor rekening acak 10 digit berawalan "66".
+     *
+     * @param accountType tipe rekening yang diinginkan (SAVINGS / CURRENT)
+     * @param user entitas pemilik rekening
+     * @return rekening yang berhasil dibuat
+     */
     @Override
     public Account createAccount(AccountType accountType, User user) {
         log.info("Inside createAccount()");
@@ -55,6 +68,11 @@ public class AccountServiceImpl implements AccountService {
         return accountRepo.save(account);
     }
 
+    /**
+     * Mengambil daftar seluruh rekening yang dimiliki oleh pengguna yang sedang terautentikasi.
+     *
+     * @return respons memuat daftar {@link AccountDTO}
+     */
     @Override
     public Response<List<AccountDTO>> getMyAccounts() {
         User user = userService.getCurrentLoggedInUser();
@@ -71,6 +89,14 @@ public class AccountServiceImpl implements AccountService {
                 .build();
     }
 
+    /**
+     * Menutup rekening pengguna setelah memastikan kepemilikan dan saldo telah bersisa nol.
+     *
+     * @param accountNumber nomor rekening yang hendak ditutup
+     * @return respons status hasil penutupan rekening
+     * @throws NotFoundException jika rekening tidak ditemukan atau bukan milik pengguna yang sedang login
+     * @throws BadRequestException jika saldo di rekening belum Rp 0 / kosong
+     */
     @Override
     public Response<?> closeAccount(String accountNumber) {
         User user = userService.getCurrentLoggedInUser();
@@ -95,13 +121,18 @@ public class AccountServiceImpl implements AccountService {
                 .build();
     }
 
+    /**
+     * Menghasilkan nomor rekening acak 10 digit unik dengan prefix "66".
+     *
+     * @return nomor rekening unik yang belum tersimpan di basis data
+     */
     private String generateAccountNumber() {
 
         String accountNumber;
         do {
             /*
-             * Generate a random 8-digit number (from 10,000,000 to 99,999,999)
-             * and combine it with "66" prefix
+             * Menghasilkan 8 digit angka acak (10,000,000 s.d 99,999,999)
+             * dan digabungkan dengan prefix "66"
              */
             accountNumber = "66" + (random.nextInt(90000000) + 10000000);
         } while (accountRepo.findByAccountNumber(accountNumber).isPresent());

@@ -19,6 +19,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data Transfer Object (DTO) untuk merepresentasikan informasi rekening finansial.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -32,15 +38,13 @@ public class AccountDTO {
     private BigDecimal balance;
     private AccountType accountType;
 
-    @JsonBackReference // this will not be added to the account dto. It will be ignored because it is a
-                       // back refrence
+    @JsonBackReference // Diabaikan dari serialisasi untuk menghindari referensi sirkular ke UserDTO
     private UserDTO user;
 
     private Currency currency;
     private AccountStatus status;
 
-    @JsonManagedReference // if helps avoid recursion loop by ignoring the AccountDTO withing the
-                          // TransactionDTO
+    @JsonManagedReference // Mencegah recursion loop dengan mengabaikan AccountDTO di dalam TransactionDTO
     private List<TransactionDTO> transactions;
 
     private LocalDateTime closedAt;

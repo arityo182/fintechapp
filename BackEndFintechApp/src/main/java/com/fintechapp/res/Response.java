@@ -7,6 +7,13 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Map;
 
+/**
+ * Format pembungkus standar (standard response wrapper) untuk semua respons API aplikasi.
+ *
+ * @param <T> tipe data payload utama yang dikembalikan dalam properti data
+ * @author Ari
+ * @since 1.0.0
+ */
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)

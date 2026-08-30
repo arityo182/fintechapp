@@ -16,6 +16,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data Transfer Object (DTO) untuk menampilkan data riwayat transaksi nasabah.
+ *
+ * @author Ari
+ * @since 1.0.0
+ */
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -31,10 +37,10 @@ public class TransactionDTO {
     private String description;
     private TransactionStatus status;
 
-    @JsonBackReference
+    @JsonBackReference // Diabaikan dari serialisasi untuk menghindari referensi sirkular ke AccountDTO
     private AccountDTO account;
 
-    // for transfer
+    // Properti khusus transfer dana
     private String sourceAccount;
     private String destinationAccount;
 }
